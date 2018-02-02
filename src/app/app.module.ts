@@ -6,12 +6,14 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { DataService } from './data.service';
 import { ThankComponent } from './thank.component';
 import { RouterModule } from '@angular/router';
+import { NavComponent } from './nav.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ThankComponent
+    ThankComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
@@ -23,6 +25,6 @@ import { RouterModule } from '@angular/router';
     ])
   ],
   providers: [FormBuilder,DataService],
-  bootstrap: [AppComponent]
+  bootstrap: [NavComponent]
 })
 export class AppModule { }

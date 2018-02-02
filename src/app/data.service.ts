@@ -10,12 +10,12 @@ export class DataService {
    }
    getData():Observable<any>
    {
-     let url="http://jsonplaceholder.typicode.com/users/1";
+     let url="https://jsonplaceholder.typicode.com/users/1";
      return this.http.get(url);
    }
    getPosts()
    {
-    let url="http://jsonplaceholder.typicode.com/posts?userid=1";
+    let url="https://jsonplaceholder.typicode.com/posts?userid=1";
     return this.http.get(url);
    }
 
