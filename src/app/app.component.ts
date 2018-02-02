@@ -1,43 +1,30 @@
 import { Component } from '@angular/core';
 import { FormBuilder,ReactiveFormsModule,FormGroup,Validators } from '@angular/forms';
 import { DataService } from './data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  template: `<div>
-            <form [formGroup]='myForm' (ngSubmit)="processData(myForm.value)">
-            <label>Name</label>
-            <input type='text' formControlName='name'>
-            <div *ngIf="!myForm.controls['name'].valid">Name required</div>
-            <label>Email</label>
-            <input type='text' formControlName='email'>
-            <div *ngIf="!myForm.controls['email'].valid">Email required</div>
-            <label>Post</label>
-            <textarea formControlName='post'></textarea>
-            <div *ngIf="!myForm.controls['post'].valid">Post should be atleast 10 characters long</div>
-            <button type='submit' [disabled]="!myForm.valid">Submit</button>
-            <button type='button' (click)="getData()">Get Data</button>
-            </form>
-             </div>`,
+  templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   myForm: FormGroup;
    
-  constructor(private fb:FormBuilder,private data:DataService)
+  constructor(private fb:FormBuilder,private data:DataService,private router:Router)
   {
      this.myForm=fb.group(
       {
         'name':[null,Validators.required],
         'email':[null,Validators.required],
-        'post':[null,Validators.minLength(10)]
+        'post':[null,Validators.compose([Validators.required,Validators.minLength(10)])]
       });
   }
   getData()
   {
     console.log("Fetching data");
     this.data.getData().subscribe(
-      (res)=>{
+      res=>{
         console.log(res.name);
         this.myForm.controls['name'].patchValue(res.name);
         this.myForm.controls['email'].patchValue(res.email);        
@@ -53,5 +40,6 @@ export class AppComponent {
   processData(formData)
   {
     console.log(formData);
+    this.router.navigate(['/thank']);
   }
 }

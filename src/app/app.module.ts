@@ -4,16 +4,23 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { DataService } from './data.service';
+import { ThankComponent } from './thank.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ThankComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot([
+      {path:'',component:AppComponent},
+      {path:'thank',component:ThankComponent}
+    ])
   ],
   providers: [FormBuilder,DataService],
   bootstrap: [AppComponent]

@@ -1,3 +1,22 @@
 <!--The content below is only a placeholder and can be replaced.-->
 
+<div>
+    <form [formGroup]='myForm' (ngSubmit)="processData(myForm.value)">
+    <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-4">
+    <label>Name</label>
+    <input type='text' class="form-control" formControlName='name'>
+    <div class="alert alert-warning" *ngIf="!myForm.controls['name'].valid && myForm.controls['name'].touched">* Name required</div>
+    <label>Email</label>
+    <input type='text' class="form-control" formControlName='email'>
+    <div class="alert alert-warning" *ngIf="!myForm.controls['email'].valid && myForm.controls['email'].touched">* Email required</div>
+    <label>Post</label>
+    <textarea class="form-control" rows=6 formControlName='post'></textarea>
+    <div class="alert alert-warning" *ngIf="!myForm.controls['post'].valid && myForm.controls['post'].touched">* Post should be atleast 10 characters long</div>
+    <div class="buttons">
+        <button class="btn btn-primary" type='submit' [disabled]="!myForm.valid">Submit</button>
+        <button class="btn btn-primary" type='button' (click)="getData()">Get Data</button>
+    </div>
+    </div>
+    </form>   
+ </div>
 

@@ -8,12 +8,12 @@ export class DataService {
   constructor(private http:HttpClient) {
    
    }
-   getData():Observable<Object>
+   getData():Observable<any>
    {
      let url="http://jsonplaceholder.typicode.com/users/1";
      return this.http.get(url);
    }
-   getPosts():Observable<Object>
+   getPosts()
    {
     let url="http://jsonplaceholder.typicode.com/posts?userid=1";
     return this.http.get(url);
